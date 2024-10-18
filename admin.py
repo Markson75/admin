@@ -4,8 +4,20 @@ def añadir_producto():
     # Lógica para añadir un producto
     
     name = input("Ingrese nombre del producto: ")
-    precio = int(input("Ingrese precio (entero por favor que si no se crashea): "))
-    cantidad = int(input("Ingrese cantidad (entero por favor que si no se crashea): "))
+    precio = input("Ingrese precio: ")
+    if precio.isdecimal():
+        precio = int(precio)
+    else:
+        print("Ingrese un valor adecuado")
+        añadir_producto()
+
+    cantidad = input("Ingrese cantidad: ")
+    
+    if cantidad.isdecimal():
+        cantidad = int(cantidad)
+    else:
+        print("Ingrese un valor adecuado")
+        añadir_producto()
     new_product = {'nombre' : name, 'precio' : precio, 'cantidad' : cantidad}
     productos.append(new_product)
     pass
@@ -19,11 +31,37 @@ def ver_productos():
 def actualizar_producto():
     # Lógica para actualizar un producto
     
-    print("Ingrese el indice del producto a modificar")
-    index = int(input())
+    size = len(productos) - 1
+    print(f"Ingrese el indice del producto a modificar (0 a {size})")
+    index = input()
+    if index.isdecimal():
+        index = int(index)
+    else:
+        print("Ingrese un valor adecuado")
+        actualizar_producto()
+    
+    if index < 0 or index > size:
+        print("Ingrese un valor de indice valido")
+        actualizar_producto()
+        
+        
     name = input("Ingrese nombre del producto: ")
-    precio = int(input("Ingrese precio (entero por favor que si no se crashea): "))
-    cantidad = int(input("Ingrese cantidad (entero por favor que si no se crashea): "))
+    
+    precio = input("Ingrese precio: ")
+    if precio.isdecimal():
+        precio = int(precio)
+    else:
+        print("Ingrese un valor adecuado")
+        actualizar_producto()
+    
+    cantidad = input("Ingrese cantidad: ")
+    if cantidad.isdecimal():
+        cantidad = int(cantidad)
+    else:
+        print("Ingrese un valor adecuado")
+        actualizar_producto()
+    
+    
     productos[index] = {'nombre' : name, 'precio' : precio, 'cantidad' : cantidad}
     pass
 
@@ -47,10 +85,25 @@ def eliminar_producto():
     #    contador = contador + 1
         
     
-    print("Ingrese indice del producto a eliminar")
-    index = int(input())
+    size = len(productos) - 1
+    print(f"Ingrese el indice del producto a eliminar (0 a {size})")
+    
+    
+    index = input()
+    
+    if index.isdecimal():
+        index = int(index)
+    else:
+        print("Ingrese un valor adecuado")
+        eliminar_producto()
+    
+    if index < 0 or index > size:
+        print("Ingrese un valor de indice valido")
+        eliminar_producto()
+    
+    
     del productos[index]
-        
+    
     pass
 
 def guardar_datos():
@@ -82,7 +135,6 @@ def menu():
         print("3: Actualizar producto")
         print("4: Eliminar producto")
         print("5: Guardar datos y salir")
-        print("6: Cargar datos")
 
         opcion = input("Selecciona una opción: ")
 
@@ -97,9 +149,8 @@ def menu():
         elif opcion == '5':
             guardar_datos()
             break
-        elif opcion == '6':
-            cargar_datos()
         else:
             print("Por favor, selecciona una opción válida.")
             
+cargar_datos()
 menu()
