@@ -67,42 +67,16 @@ def actualizar_producto():
 
 def eliminar_producto():
     # Lógica para eliminar un producto
-    #NOTA: soy conciente que el material pide la eliminacion de un producto en base
-    #a su nombre, a continuacion se ve la logica si cada atributo fuera un elemento
-    #de una lista, en este caso una lista 2d, optar por este metodo implica cambiar
-    #el codigo de manera que los productos, no se construyen a base de diccionarios, 
-    # y como opte por el diseño de diccionarios, no funcionaria dicho metodo, lo dejo 
-    # aqui de igual manera para demostrar una forma de eliminar productos en base a su 
-    # nombre
     
-    #nombre = input("Ingrese nombre del producto a eliminar: ")
+    print("Ingrese nombre del producto a eliminar")
+    value = input()
     
-    #contador = 0
-    #for fila in productos:
-    #    for item in fila:
-    #        if item == nombre:
-    #            del productos[contador]
-    #    contador = contador + 1
-        
-    
-    size = len(productos) - 1
-    print(f"Ingrese el indice del producto a eliminar (0 a {size})")
-    
-    
-    index = input()
-    
-    if index.isdecimal():
-        index = int(index)
-    else:
-        print("Ingrese un valor adecuado")
-        eliminar_producto()
-    
-    if index < 0 or index > size:
-        print("Ingrese un valor de indice valido")
-        eliminar_producto()
-    
-    
-    del productos[index]
+    contador = 0
+    for index in productos:
+        if index['nombre'] == value:
+            del productos[contador]
+            print("Producto eliminado")
+        contador = contador + 1
     
     pass
 
